@@ -1,15 +1,23 @@
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectError, selectLoggedInUser } from '../authSlice';
+import { Link, Navigate } from 'react-router-dom';
+import { loginUserAsync } from '../authSlice';
 import { useForm } from 'react-hook-form';
 
 export default function Login() {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm();
+  const dispatch = useDispatch();
+  const error = useSelector(selectError);
+  const user = useSelector(selectLoggedInUser);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
 
   return (
     <>
+      {user && <Navigate to="/" replace={true}></Navigate>}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -25,6 +33,11 @@ export default function Login() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
             noValidate
+            onSubmit={handleSubmit((data) => {
+              dispatch(
+                loginUserAsync({ email: data.email, password: data.password })
+              );
+            })}
             className="space-y-6"
           >
             <div>
@@ -47,6 +60,9 @@ export default function Login() {
                   type="email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.email && (
+                  <p className="text-red-500">{errors.email.message}</p>
+                )}
               </div>
             </div>
 
@@ -59,12 +75,12 @@ export default function Login() {
                   Password
                 </label>
                 <div className="text-sm">
-                  <a
+                  <Link
                     to="/forgot-password"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="mt-2">
@@ -76,7 +92,11 @@ export default function Login() {
                   type="password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.password && (
+                  <p className="text-red-500">{errors.password.message}</p>
+                )}
               </div>
+              {error && <p className="text-red-500">{error || error.message}</p>}
             </div>
 
             <div>
@@ -95,7 +115,7 @@ export default function Login() {
               to="/signup"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
-              Create an Accounts
+              Create an Account
             </Link>
           </p>
         </div>
