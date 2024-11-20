@@ -29,15 +29,9 @@ import AdminHome from './pages/AdminHome';
 import AdminProductDetailPage from './pages/AdminProductDetailPage';
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
-import { positions, Provider } from 'react-alert';
-import AlertTemplate from 'react-alert-template-basic';
 import StripeCheckout from './pages/StripeCheckout';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 
-const options = {
-  timeout: 5000,
-  position: positions.BOTTOM_LEFT,
-};
 
 const router = createBrowserRouter([
   {
@@ -191,9 +185,7 @@ function App() {
     <>
       <div className="App">
         {userChecked && (
-          <Provider template={AlertTemplate} {...options}>
             <RouterProvider router={router} />
-          </Provider>
         )}
       </div>
     </>
