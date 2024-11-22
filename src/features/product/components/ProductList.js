@@ -120,8 +120,8 @@ export default function ProductList() {
         ></MobileFilter>
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-14">
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900">
               All Products
             </h1>
 
@@ -411,8 +411,7 @@ function ProductGrid({ products, status }) {
               wrapperClass=""
               visible={true}
             />
-          ) : null}
-          {products.map((product) => (
+          ) : products.map((product) => (
             <Link to={`/product-detail/${product.id}`} key={product.id}>
               <div className="group relative border-solid border-2 p-2 border-gray-200">
                 <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">

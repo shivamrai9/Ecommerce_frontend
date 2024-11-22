@@ -47,7 +47,7 @@ export function fetchProductsByFilters(filter, sort, pagination, admin) {
     }
   }
   for (let key in sort) {
-    queryString += `${key}=${sort[key]}&`;
+    queryString += `${key}=${sort[key]}&`; 
   }
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;

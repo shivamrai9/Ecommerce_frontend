@@ -1,4 +1,3 @@
-import { Counter } from './features/counter/Counter';
 import './App.css';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
@@ -29,7 +28,7 @@ import AdminHome from './pages/AdminHome';
 import AdminProductDetailPage from './pages/AdminProductDetailPage';
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
-import StripeCheckout from './pages/StripeCheckout';
+// import StripeCheckout from './pages/StripeCheckout';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 
 
@@ -142,7 +141,7 @@ const router = createBrowserRouter([
     path: '/stripe-checkout/',
     element: (
       <Protected>
-        <StripeCheckout></StripeCheckout>
+        {/* <StripeCheckout></StripeCheckout> */}
       </Protected>
     ),
   },
